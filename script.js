@@ -80,7 +80,6 @@ const logoutBtn = document.createElement('button');
 logoutBtn.textContent = 'Выйти';
 logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('chatUsername');
-    localStorage.removeItem('chatMessages');
     location.reload(); // Перезагрузить страницу
 });
 document.querySelector('.container').appendChild(logoutBtn);
