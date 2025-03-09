@@ -1,21 +1,24 @@
 const chatBox = document.getElementById('chat-box');
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
-const keyboard = document.getElementById('keyboard');
 
-// Обработка нажатия на клавиши клавиатуры
-keyboard.addEventListener('click', (event) => {
-    if (event.target.tagName === 'BUTTON') {
-        const key = event.target.getAttribute('data-key');
-        if (key === 'backspace') {
-            chatInput.value = chatInput.value.slice(0, -1); // Удалить последний символ
-        } else if (key === 'space') {
-            chatInput.value += ' '; // Добавить пробел
-        } else {
-            chatInput.value += key; // Добавить символ
-        }
-    }
-});
+// Загрузка сообщений из localStorage
+function loadMessages() {
+    const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+    messages.forEach(message => {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        chatBox.appendChild(messageElement);
+    });
+    chatBox.scrollTop = chatBox.scrollHeight; // Прокрутить вниз
+}
+
+// Сохранение сообщения в localStorage
+function saveMessage(message) {
+    const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+    messages.push(message);
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+}
 
 // Отправка сообщения
 sendBtn.addEventListener('click', () => {
@@ -24,6 +27,7 @@ sendBtn.addEventListener('click', () => {
         const messageElement = document.createElement('div');
         messageElement.textContent = `Вы: ${message}`;
         chatBox.appendChild(messageElement);
+        saveMessage(`Вы: ${message}`); // Сохраняем сообщение
         chatInput.value = ''; // Очистить поле ввода
         chatBox.scrollTop = chatBox.scrollHeight; // Прокрутить вниз
     }
@@ -35,3 +39,6 @@ chatInput.addEventListener('keydown', (event) => {
         sendBtn.click(); // Отправить сообщение
     }
 });
+
+// Загружаем сообщения при загрузке страницы
+loadMessages();
