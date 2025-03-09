@@ -5,6 +5,7 @@ const sendBtn = document.getElementById('send-btn');
 // Загрузка сообщений из localStorage
 function loadMessages() {
     const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+    chatBox.innerHTML = ''; // Очистить чат перед загрузкой
     messages.forEach(message => {
         const messageElement = document.createElement('div');
         messageElement.textContent = message;
@@ -24,12 +25,9 @@ function saveMessage(message) {
 sendBtn.addEventListener('click', () => {
     const message = chatInput.value.trim();
     if (message !== '') {
-        const messageElement = document.createElement('div');
-        messageElement.textContent = `Вы: ${message}`;
-        chatBox.appendChild(messageElement);
         saveMessage(`Вы: ${message}`); // Сохраняем сообщение
         chatInput.value = ''; // Очистить поле ввода
-        chatBox.scrollTop = chatBox.scrollHeight; // Прокрутить вниз
+        loadMessages(); // Обновляем чат
     }
 });
 
@@ -40,14 +38,8 @@ chatInput.addEventListener('keydown', (event) => {
     }
 });
 
+// Автоматическое обновление чата каждую секунду
+setInterval(loadMessages, 1000);
+
 // Загружаем сообщения при загрузке страницы
 loadMessages();
-
-
-const clearBtn = document.createElement('button');
-clearBtn.textContent = 'Очистить чат';
-clearBtn.addEventListener('click', () => {
-    localStorage.removeItem('chatMessages');
-    chatBox.innerHTML = ''; // Очистить чат
-});
-document.querySelector('.container').appendChild(clearBtn);
