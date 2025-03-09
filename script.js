@@ -42,3 +42,12 @@ chatInput.addEventListener('keydown', (event) => {
 
 // Загружаем сообщения при загрузке страницы
 loadMessages();
+
+
+const clearBtn = document.createElement('button');
+clearBtn.textContent = 'Очистить чат';
+clearBtn.addEventListener('click', () => {
+    localStorage.removeItem('chatMessages');
+    chatBox.innerHTML = ''; // Очистить чат
+});
+document.querySelector('.container').appendChild(clearBtn);
