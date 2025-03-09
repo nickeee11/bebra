@@ -76,10 +76,4 @@ setInterval(loadMessages, 1000);
 // Проверяем авторизацию при загрузке страницы
 checkAuth();
 
-const logoutBtn = document.createElement('button');
-logoutBtn.textContent = 'Выйти';
-logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('chatUsername');
-    location.reload(); // Перезагрузить страницу
-});
-document.querySelector('.container').appendChild(logoutBtn);
+
