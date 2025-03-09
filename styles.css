@@ -14,10 +14,37 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 h1 {
-    text-align: center;
+    margin-bottom: 20px;
+}
+
+#auth-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#username-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-btn:hover {
+    background-color: #0056b3;
 }
 
 #chat-box {
@@ -33,7 +60,6 @@ h1 {
 #input-area {
     display: flex;
     gap: 10px;
-    margin-bottom: 10px;
 }
 
 #chat-input {
@@ -54,33 +80,4 @@ h1 {
 
 #send-btn:hover {
     background-color: #0056b3;
-}
-
-#keyboard {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.keyboard-row {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
-
-#keyboard button {
-    padding: 10px;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1;
-}
-
-#keyboard button:hover {
-    background-color: #ddd;
-}
-
-#keyboard .space {
-    flex: 5;
 }
