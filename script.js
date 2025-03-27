@@ -76,4 +76,17 @@ setInterval(loadMessages, 1000);
 // Проверяем авторизацию при загрузке страницы
 checkAuth();
 
+<!-- Yandex.RTB -->
+<script>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async></script>
 
+<!-- Yandex.RTB R-A-14785396-1 -->
+<div id="yandex_rtb_R-A-14785396-1"></div>
+<script>
+window.yaContextCb.push(() => {
+    Ya.Context.AdvManager.render({
+        "blockId": "R-A-14785396-1",
+        "renderTo": "yandex_rtb_R-A-14785396-1"
+    })
+})
+</script>
